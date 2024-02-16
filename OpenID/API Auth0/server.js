@@ -22,19 +22,19 @@ const printToken = (req, res, next) => {
 
 const checkJwt = jwt({
     secret: jwksRsa.expressJwtSecret({
-        cache: true,
-        rateLimit: true,
-        jwksRequestsPerMinute: 5,
-        jwksUri: `https://dev-kgepirlxe75llgds.us.auth0.com/.well-known/jwks.json`
+      cache: true,
+      rateLimit: true,
+      jwksRequestsPerMinute: 5,
+      jwksUri: "https://dev-spdnexpuf8hzfcfu.us.auth0.com/.well-known/jwks.json",
     }),
-    audience: 'https://api.canekopenid.com',
-    issuer: `https://dev-kgepirlxe75llgds.us.auth0.com/`,
-    algorithms: ['RS256']
-});
+    audience: "unique identifier",
+    issuer: "https://dev-spdnexpuf8hzfcfu.us.auth0.com/",
+    algorithms: ['RS256'],
+  });
 
 app.get('/protected', printToken, checkJwt, (req, res) => {
     res.send({
-        message: "El contenido protegido ha sido accesado con éxito.",
+        message: "El token de acceso ha verificado con exito.",
         user: req.user
     });
 });
